@@ -1,0 +1,18 @@
+#N canvas 356 174 816 454 10;
+#X obj 14 20 esdf/dsp~;
+#X obj 272 18 esdf/unmount mixer;
+#X obj 272 41 esdf/preset.prepare;
+#X msg 272 64 pan1 0 \, pan2 0 \, pan3 0 \, pan4 0 \, pan5 0 \, pan6
+0 \, pan 0 \, mute 0 \, fader 0 \, mute1 0 \, mute2 1 \, fader2 0 \,
+mute3 0 \, fader3 0 \, mute4 1 \, fader4 0 \, mute5 1 \, fader5 0 \,
+mute6 1 \, fader6 0 \,;
+#X obj 15 176 esdf/mixer6~ mixer, f 25;
+#X obj 73 97 phasor~ 5;
+#X obj 15 98 adc~;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 5 0 4 4;
+#X connect 5 0 4 5;
+#X connect 6 0 4 0;
+#X connect 6 1 4 1;

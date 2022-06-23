@@ -1,0 +1,24 @@
+#N canvas 137 199 659 411 10;
+#X obj 16 20 esdf/dsp~;
+#X obj 17 75 clock~;
+#X obj 17 132 orca;
+#X obj 246 87 cycle 2;
+#X obj 246 138 timer;
+#X obj 246 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 286 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 246 63 spigot;
+#X obj 246 32 notein;
+#X floatatom 246 184 5 0 0 0 - - -;
+#X obj 246 161 expr 60/(4 * 0.001 * $f1);
+#X connect 1 0 2 0;
+#X connect 3 0 5 0;
+#X connect 3 1 6 0;
+#X connect 4 0 10 0;
+#X connect 5 0 4 0;
+#X connect 6 0 4 1;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 1 7 1;
+#X connect 10 0 9 0;

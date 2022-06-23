@@ -1,0 +1,48 @@
+#N canvas 365 168 829 523 10;
+#X obj 15 92 list prepend;
+#X obj 15 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 219 46 esdf/preset.prepare;
+#X obj 219 23 r seq.r;
+#X obj 275 23 s seq.s;
+#X text 217 126 outs: value addr max_bang min_bang;
+#X text 217 146 messages:;
+#X text 240 329 [open( open coll;
+#X text 240 349 [dump( dump parameters to mountpount receivers;
+#X text 240 169 [bang( jump to the next position and outputs;
+#X text 240 209 [< pos( jumps to -pos and outputs;
+#X text 240 189 [> pos( jumps to +pos and outputs;
+#X text 240 229 [start( jumps to start position without outputting
+;
+#X text 240 249 [min v( sets min;
+#X text 240 269 [max v( sets max;
+#X text 240 289 [goto pos( jumps to pos without outputting;
+#X text 240 309 [name sym( refer to another coll named sym;
+#X obj 15 43 metro 200;
+#X obj 15 115 print K;
+#X text 217 376 text format: just like coll \, but coll.seq will split
+messages using the separator | \; i.e. 3 \, a | b \; will send both
+a and b \, in sequence.;
+#X msg 219 69 min 0 \, max 12 \, name s0 \,;
+#X obj 15 68 esdf/coll.seq seq;
+#X text 217 106 arguments: mountpoint min max start_pos;
+#X obj 15 161 coll s0 1 @embed 1;
+#C flags 1 0;
+#C 1 a | b 4;
+#C 7 3 | c 14;
+#C 11 1;
+#C restore;
+#X obj 15 191 coll s1 1 @embed 1;
+#C flags 1 0;
+#C 1 14;
+#C restore;
+#X obj 15 221 coll seq.txt;
+#C restore;
+#X connect 0 0 18 0;
+#X connect 1 0 17 0;
+#X connect 2 0 20 0;
+#X connect 3 0 2 0;
+#X connect 17 0 21 0;
+#X connect 20 0 4 0;
+#X connect 21 0 0 0;
+#X connect 21 1 0 1;

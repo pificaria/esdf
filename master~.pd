@@ -1,0 +1,157 @@
+#N canvas 86 200 853 303 10;
+#X obj 36 47 inlet~;
+#X obj 84 47 inlet~;
+#X obj 37 103 else/balance~, f 16;
+#X obj 159 47 r \$0-pan.s;
+#X obj 159 70 else/float2sig~ 10;
+#X obj 37 186 *~;
+#X obj 130 186 *~;
+#X obj 159 126 else/float2sig~ 10;
+#X obj 159 103 r \$0-sfader.s;
+#X obj 37 209 outlet~;
+#X obj 130 209 outlet~;
+#X obj 666 25 r \$0-mute.s;
+#X obj 666 48 == 0;
+#X obj 666 71 switch~;
+#X obj 387 98 inlet;
+#N canvas 117 135 296 189 \$0-gui 0;
+#X obj 22 37 hsl 128 8 0 1.2 0 0 \$0-sfader.s \$0-sfader.r fader -4
+-8 0 10 -262144 -1 -1 10583 1;
+#X obj 22 62 hsl 128 8 -1 1 0 1 \$0-span.s \$0-span.r pan -4 -8 0 10
+-262144 -1 -1 6350 1;
+#X obj 160 33 nbx 5 12 -1e+37 100 0 0 \$0-fader.s \$0-fader.r empty
+0 -8 0 10 -262144 -1 -1 0 256;
+#X obj 160 59 nbx 5 12 -1 1 0 0 \$0-pan.s \$0-pan.r empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 19 89 nbx 5 12 -1e+37 1e+37 0 0 \$0-lmpeak.s \$0-lmpeak.r max_left
+0 -8 0 10 -262144 -1 -1 -1e+37 256;
+#X obj 98 89 nbx 5 12 -1e+37 1e+37 0 0 \$0-rmpeak.s \$0-rmpeak.r max_right
+0 -8 0 10 -262144 -1 -1 -1e+37 256;
+#X obj 19 119 nbx 5 12 -1e+37 1e+37 0 0 \$0-lpeak.s \$0-lpeak.r left
+0 -8 0 10 -262144 -1 -1 -999 256;
+#X obj 98 119 nbx 5 12 -1e+37 1e+37 0 0 \$0-rpeak.s \$0-rpeak.r right
+0 -8 0 10 -262144 -1 -1 -999 256;
+#X obj 159 118 tgl 15 0 \$0-mute.s \$0-mute.r mute 17 7 0 10 -262144
+-1 -1 1 1;
+#X obj 159 86 bng 15 250 50 0 \$0-reset.s \$0-reset.r reset 17 7 0
+10 -262144 -1 -1;
+#X obj 228 86 bng 15 250 50 0 \$0-dump.s \$0-dump.r dump 17 7 0 10
+-262144 -1 -1;
+#X obj 19 151 nbx 5 12 -1e+37 1e+37 0 0 \$0-mlufs.s \$0-mlufs.r momentary
+0 -8 0 10 -262144 -1 -1 -1e+37 256;
+#X obj 98 151 nbx 5 12 -1e+37 1e+37 0 0 \$0-slufs.s \$0-slufs.r short_term
+0 -8 0 10 -262144 -1 -1 -1e+37 256;
+#X restore 387 170 pd \$0-gui;
+#N canvas 0 50 644 189 route 0;
+#X obj 27 32 r \$0-sfader.s;
+#X obj 27 81 else/lin2db;
+#X obj 27 106 change;
+#X obj 197 107 s \$0-sfader.r;
+#X obj 391 32 r \$0-span.s;
+#X obj 391 57 change;
+#X obj 526 58 s \$0-span.r;
+#X obj 197 55 else/db2lin;
+#X obj 27 57 pow 2;
+#X obj 197 80 sqrt;
+#X obj 197 31 r \$0-fader.s;
+#X obj 27 131 s \$0-fader.r;
+#X obj 391 82 s \$0-pan.r;
+#X obj 526 33 r \$0-pan.s;
+#X connect 0 0 8 0;
+#X connect 1 0 2 0;
+#X connect 2 0 11 0;
+#X connect 4 0 5 0;
+#X connect 5 0 12 0;
+#X connect 7 0 9 0;
+#X connect 8 0 1 0;
+#X connect 9 0 3 0;
+#X connect 10 0 7 0;
+#X connect 13 0 6 0;
+#X restore 747 94 pd route;
+#N canvas 133 257 362 428 meter 0;
+#X obj 23 66 inlet~;
+#X obj 213 66 inlet~;
+#X obj 23 89 peakenv~ 300;
+#X obj 213 89 peakenv~ 300;
+#X obj 23 112 snapshot~;
+#X obj 213 112 snapshot~;
+#X obj 23 135 else/lin2db;
+#X obj 213 135 else/lin2db;
+#X obj 23 158 s \$0-lpeak.r;
+#X obj 213 158 s \$0-rpeak.r;
+#X obj 23 13 loadbang;
+#X obj 23 36 metro 150;
+#X obj 83 201 r \$0-reset.s;
+#X obj 83 247 esdf/ebur128~;
+#X msg 83 224 reset;
+#X obj 83 270 s \$0-lmpeak.r;
+#X obj 108 292 s \$0-rmpeak.r;
+#X obj 133 314 s \$0-mlufs.r;
+#X obj 158 336 s \$0-slufs.r;
+#X connect 0 0 2 0;
+#X connect 0 0 13 0;
+#X connect 1 0 3 0;
+#X connect 1 0 13 1;
+#X connect 2 0 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 8 0;
+#X connect 7 0 9 0;
+#X connect 10 0 11 0;
+#X connect 11 0 5 0;
+#X connect 11 0 4 0;
+#X connect 11 0 13 0;
+#X connect 12 0 14 0;
+#X connect 13 0 15 0;
+#X connect 13 1 16 0;
+#X connect 13 2 17 0;
+#X connect 13 3 18 0;
+#X connect 14 0 13 0;
+#X restore 37 251 pd meter;
+#X obj 387 199 else/click;
+#X msg 387 222 vis 1;
+#X obj 387 245 s pd-\$0-gui;
+#X obj 431 98 esdf/mount \$1;
+#X obj 431 72 esdf/states;
+#X obj 387 121 esdf/args.route0 reset pan fader mute dump;
+#X obj 666 121 r _global/dump;
+#X obj 431 25 r \$0-dump.s;
+#X obj 666 144 s \$0-dump.r;
+#X obj 431 48 esdf/msg.dump;
+#X obj 545 197 esdf/state.param \$0 fader;
+#X obj 545 219 esdf/state.param \$0 pan;
+#X obj 545 243 esdf/state.param \$0 mute;
+#X obj 747 26 else/initmess \; \$0-mute.r 1 \; \$0-fader.r 0 \; \$0-pan.r
+0 \;;
+#X obj 747 2 initbang;
+#X obj 224 208 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 2 1;
+#X connect 2 0 5 0;
+#X connect 2 1 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 2;
+#X connect 5 0 9 0;
+#X connect 5 0 17 0;
+#X connect 6 0 10 0;
+#X connect 6 0 17 1;
+#X connect 7 0 6 1;
+#X connect 7 0 5 1;
+#X connect 8 0 7 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 14 0 23 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 21 0 23 0;
+#X connect 22 0 21 0;
+#X connect 22 0 33 0;
+#X connect 24 0 26 0;
+#X connect 25 0 27 0;
+#X connect 27 0 22 0;
+#X connect 27 1 21 0;
+#X connect 28 0 22 0;
+#X connect 29 0 22 0;
+#X connect 30 0 22 0;
+#X connect 32 0 31 0;

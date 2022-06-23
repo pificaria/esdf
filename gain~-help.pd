@@ -1,0 +1,8 @@
+#N canvas 354 182 530 523 10;
+#X obj 16 22 esdf/dsp~;
+#X obj 16 78 phasor~ 60;
+#X obj 16 228 mtl/scope~;
+#X obj 16 101 esdf/gain~ 0 -12;
+#X connect 1 0 3 0;
+#X connect 1 0 3 1;
+#X connect 3 0 2 0;

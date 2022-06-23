@@ -1,0 +1,15 @@
+#N canvas 563 152 488 242 10;
+#X obj 18 87 esdf/coll.read asdf;
+#X obj 18 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 18 41 esdf/ccc 0 4;
+#X floatatom 18 64 5 0 0 0 - - -;
+#X obj 18 110 print;
+#X obj 190 37 coll asdf 1;
+#C restore;
+#X obj 190 12 else/initmess 0 1 \, 1 2 | a 3 \, 3 catapimbas;
+#X connect 0 0 4 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 6 0 5 0;

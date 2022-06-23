@@ -1,0 +1,12 @@
+#N canvas 527 419 373 233 10;
+#X floatatom 24 36 5 0 0 0 - - -;
+#X floatatom 24 111 5 0 0 0 - - -;
+#X floatatom 72 36 5 0 0 0 - - -;
+#X floatatom 122 36 5 0 0 0 - - -;
+#X text 21 174 args: gain(0dB) const(0);
+#X text 21 157 affine transformation: out = in_0 * in_1 + in_2;
+#X obj 24 88 esdf/affinedb -3;
+#X connect 0 0 6 0;
+#X connect 2 0 6 1;
+#X connect 3 0 6 2;
+#X connect 6 0 1 0;

@@ -1,0 +1,21 @@
+#N canvas 268 178 863 559 10;
+#X obj 22 26 esdf/dsp~;
+#X obj 23 82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 23 128 *~;
+#X obj 57 81 noise~;
+#X obj 23 171 esdf/a02~ del;
+#X obj 291 21 r del.r;
+#X obj 291 44 esdf/preset.prepare;
+#X msg 291 67 fb 0.9 \, delay 0.5 \,;
+#X obj 341 21 s del.s;
+#X obj 23 194 mtl/spectrogram~;
+#X obj 23 105 else/timed.gate 1000;
+#X connect 1 0 10 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 4 0 9 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 10 0 2 0;

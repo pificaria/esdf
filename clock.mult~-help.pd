@@ -1,0 +1,10 @@
+#N canvas 475 220 577 392 10;
+#X obj 13 16 esdf/dsp~;
+#X obj 14 70 clock~;
+#X floatatom 89 154 5 0 0 0 - - -;
+#X obj 89 201 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 14 177 clock.mult~ 4;
+#X connect 1 0 4 0;
+#X connect 2 0 4 1;
+#X connect 4 1 3 0;

@@ -1,0 +1,62 @@
+#N canvas 516 416 734 374 10;
+#X obj 13 104 metro 1 120 permin;
+#X obj 254 23 r \$0-dump.s;
+#X obj 254 46 esdf/msg.dump;
+#X obj 254 69 esdf/states;
+#X obj 254 92 esdf/mount \$1;
+#N canvas 371 491 389 101 \$0-gui 0;
+#X obj 14 21 nbx 5 14 0 1e+37 0 0 \$0-bpm.s \$0-bpm.r bpm 0 -8 0 10
+-262144 -1 -1 130 256;
+#X obj 84 21 nbx 5 14 0 1e+37 0 0 \$0-div.s \$0-div.r div 0 -8 0 10
+-262144 -1 -1 16 256;
+#X obj 14 54 tgl 15 0 \$0-on.s \$0-on.r on 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 84 54 bng 15 250 50 0 \$0-dump.s \$0-dump.r dump 17 7 0 10 -262144
+-1 -1;
+#X restore 454 22 pd \$0-gui;
+#X obj 454 54 else/click;
+#X msg 454 77 vis 1;
+#X obj 454 100 s pd-\$0-gui;
+#X obj 455 132 r _global/dump;
+#X obj 455 155 s \$0-dump.r;
+#X obj 405 249 del 0;
+#X obj 405 272 canvasargs;
+#X obj 405 295 esdf/args.init null bpm div on;
+#X obj 247 125 inlet;
+#X obj 247 148 esdf/args.route0 bpm div dump;
+#X obj 247 171 route bang float;
+#X obj 247 194 s \$0-on.r;
+#X obj 13 58 r \$0-bpm.s;
+#X msg 13 81 tempo \$1 permin;
+#X obj 118 81 r \$0-div.s;
+#X obj 13 32 r \$0-on.s;
+#X obj 13 127 outlet;
+#X obj 147 245 esdf/state.param \$0 on;
+#X obj 147 265 esdf/state.param \$0 bpm;
+#X obj 147 285 esdf/state.param \$0 div;
+#X obj 405 187 else/initmess bang \; \$0-bpm.r 120 \; \$0-div.r 0.25
+\; \$0-on.r 0 \;;
+#X connect 0 0 22 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 3 0 4 0;
+#X connect 4 0 15 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 1 17 0;
+#X connect 18 0 19 0;
+#X connect 19 0 0 0;
+#X connect 20 0 0 1;
+#X connect 21 0 0 0;
+#X connect 23 0 3 0;
+#X connect 24 0 3 0;
+#X connect 25 0 3 0;
+#X connect 26 0 11 0;

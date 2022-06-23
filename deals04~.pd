@@ -1,0 +1,40 @@
+#N canvas 271 139 834 349 10;
+#X obj 18 49 inlet~;
+#X obj 334 128 sig~;
+#X obj 334 105 r \$0-exp1;
+#X obj 18 168 expr~ if($v2 >= 0 \, pow($v1 \, $v2) \, 1-pow(1-$v1 \,
+-$v2));
+#X obj 178 198 expr~ if($v2 >= 0 \, pow($v1 \, $v2) \, 1-pow(1-$v1
+\, -$v2));
+#X obj 493 168 sig~;
+#X obj 493 145 r \$0-exp2;
+#X obj 644 5 else/initmess bang \; \$0-exp1 1 \; \$0-exp2 1 \;;
+#X obj 644 54 del 0;
+#X obj 644 77 canvasargs;
+#X obj 644 100 esdf/args.init exp1 exp2;
+#X obj 644 123 route exp1 exp2;
+#X obj 307 78 inlet;
+#X obj 473 107 inlet;
+#X obj 18 274 outlet~;
+#X obj 81 88 else/changed2~;
+#X obj 18 122 expr~ if($v2 >= 0 \, $v1 \, 0) \; if($v2 < 0 \, $v1 \,
+0) \;;
+#X connect 0 0 16 0;
+#X connect 0 0 15 0;
+#X connect 1 0 3 1;
+#X connect 2 0 1 0;
+#X connect 3 0 14 0;
+#X connect 4 0 14 0;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 1 0;
+#X connect 11 1 5 0;
+#X connect 12 0 1 0;
+#X connect 13 0 5 0;
+#X connect 15 1 16 1;
+#X connect 16 0 3 0;
+#X connect 16 1 4 0;

@@ -1,0 +1,12 @@
+#N canvas 455 313 475 171 10;
+#X obj 24 35 esdf/clock cl;
+#X obj 24 58 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 213 21 r cl.r;
+#X obj 213 44 esdf/preset.prepare;
+#X msg 213 67 bpm 90 \, div 0.33 \, on 1 \,;
+#X obj 260 21 s cl.s;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;

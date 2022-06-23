@@ -1,0 +1,6 @@
+#N canvas 416 212 732 432 10;
+#X msg 14 46 440 3;
+#X obj 14 70 esdf/args.init freq gain;
+#X obj 14 93 print;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;

@@ -1,0 +1,16 @@
+#N canvas 239 131 448 260 10;
+#X obj 34 39 inlet~;
+#X obj 114 39 inlet~;
+#X obj 194 39 inlet~;
+#X obj 34 102 *~;
+#X obj 48 78 esdf/a00~ 0 sin 0 0 0;
+#X obj 196 78 sig~ 0.707;
+#X obj 34 148 outlet~;
+#X obj 34 125 iemlib/vcf_lp4~;
+#X connect 0 0 3 0;
+#X connect 1 0 4 0;
+#X connect 2 0 7 1;
+#X connect 3 0 7 0;
+#X connect 4 0 3 1;
+#X connect 5 0 7 2;
+#X connect 7 0 6 0;

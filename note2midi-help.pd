@@ -1,0 +1,13 @@
+#N canvas 803 287 286 258 10;
+#X obj 17 48 esdf/note2midi;
+#X obj 17 71 t f f;
+#X obj 17 124 pack f f;
+#X obj 44 98 mtof;
+#X obj 17 147 else/display;
+#X msg 17 25 Eb 4;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 5 0 0 0;

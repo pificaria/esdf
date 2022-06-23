@@ -1,0 +1,14 @@
+#N canvas 606 322 314 276 10;
+#X msg 52 54 a 4;
+#X obj 52 107 print rest;
+#X floatatom 53 165 5 0 0 0 - - -;
+#X floatatom 143 165 5 0 0 0 - - -;
+#X msg 92 54 b 3;
+#X obj 52 84 esdf/args.route0 a b;
+#X obj 53 142 r \$0-a.r;
+#X obj 143 142 r \$0-b.r;
+#X connect 0 0 5 0;
+#X connect 4 0 5 0;
+#X connect 5 0 1 0;
+#X connect 6 0 2 0;
+#X connect 7 0 3 0;

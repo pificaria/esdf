@@ -1,0 +1,17 @@
+#N canvas 204 137 756 442 10;
+#X obj 23 20 esdf/dsp~;
+#X obj 24 82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 24 131 mtl/scope~;
+#X obj 445 26 r env.r;
+#X obj 445 49 esdf/preset.prepare;
+#X msg 445 72 rise 10 \, fall 1000 \, gate 5 \, ffb -999 \, rfb 3 \,
+;
+#X obj 505 26 s env.s;
+#X obj 24 108 esdf/a01.ar~ env 1;
+#X text 442 130 arguments: mountpoint rise fall gate rfb ffb;
+#X connect 1 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 7 0 2 0;

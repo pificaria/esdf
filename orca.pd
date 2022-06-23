@@ -1,0 +1,27 @@
+#N canvas 577 175 900 582 10;
+#X obj 103 121 bng 15 250 50 0 \$0-connect.s \$0-connect.r connect
+17 7 0 10 -262144 -1 -1;
+#X obj 103 141 bng 15 250 50 0 \$0-rframe.s \$0-rframe.r frame_0 17
+7 0 10 -262144 -1 -1;
+#X obj 159 213 inlet;
+#X obj 159 236 esdf/msg.tag send;
+#X obj 159 489 netsend -u;
+#X obj 314 215 r \$0-connect.s;
+#X msg 314 238 connect 127.0.0.1 49160;
+#X msg 314 288 send frame:0;
+#X obj 314 265 r \$0-rframe.s;
+#X obj 324 195 loadbang;
+#X msg 20 300 send tap;
+#X obj 20 277 inlet;
+#X obj 90 277 inlet;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 6 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
+#X connect 8 0 7 0;
+#X connect 9 0 6 0;
+#X connect 10 0 4 0;
+#X connect 11 0 10 0;
+#X connect 12 0 7 0;
+#X coords 0 -1 1 1 68 60 1 100 100;
